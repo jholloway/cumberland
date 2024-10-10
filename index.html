@@ -11,28 +11,19 @@
 		<link href="jquery.highlight-within-textarea.css" rel="stylesheet">
 		<script src="jquery.highlight-within-textarea.js"></script>
 
-		<!-- custom styles for highlight-within-textarea -->
 		<style>
 			.hwt-container {
 				background-color: #f8f9fa;
+				width: 100%;
 			}
 
 			.hwt-content {
-				width: 760px;
-				height: 100px;
+				width: 100%;
+				height: 1200px;
 				padding: 20px;
 				border: 1px solid #adb5bd;
 				color: inherit;
 				font: 18px/25px 'Droid Sans Mono', sans-serif;
-			}
-
-			.hwt-input:focus {
-				outline-color: #495057;
-			}
-
-			.hwt-content mark {
-				border-radius: 3px;
-				background-color: #d0bfff;
 			}
 
 			.hwt-content mark.red {
@@ -43,19 +34,20 @@
 				background-color: #a3daff;
 			}
 
-			.hwt-content mark.yellow {
-				background-color: #ffec99;
+			.hwt-content mark.orange {
+				background-color: #ffd8a8;
 			}
-		</style>
 
-		<!-- general styles to make this page look decent -->
-		<style>
+			.hwt-content mark.purple {
+				background-color: #e5d0ff; /* Soft purple color */
+			}
+
 			* {
 				box-sizing: border-box;
 			}
 
 			body {
-				max-width: 800px;
+				max-width: 1200px; /* Increased max-width */
 				margin: 40px auto;
 				padding: 0 20px;
 				font: 18px/1.4 'Open Sans', sans-serif;
@@ -63,61 +55,244 @@
 				background-color: #f1f3f5;
 			}
 
-			a {
-				display: inline-block;
-				margin-bottom: 5px;
-				padding: 10px 30px;
-				border-radius: 5px;
-				color: #f8f9fa;
-				background-color: #495057;
-				text-decoration: none;
-			}
-
 			section {
 				margin-top: 60px;
 			}
 
-			code {
-				padding: 0 5px;
-				font-family: 'Droid Sans Mono', sans-serif;
+			/* Updated button styles */
+			#clearButton,
+			#resetButton,
+			#copyButton {
+				margin-right: 10px;
+				margin-bottom: 10px;
+				padding: 10px 20px;
 				font-size: 16px;
-				background-color: #dee2e6;
+				cursor: pointer;
+				background-color: #4CAF50; /* Green background */
+				color: white;
+				border: none;
+				border-radius: 5px;
+				transition: background-color 0.3s;
 			}
 
-			script {
-				display: block;
-				margin-top: 10px;
-				padding-left: 15px;
-				border-left: 5px solid #adb5bd;
-				background-color: #e9ecef;
-				white-space: pre-wrap;
-				font: 14px/1.5 'Droid Sans Mono', sans-serif;
+			#clearButton:hover,
+			#resetButton:hover,
+			#copyButton:hover {
+				background-color: #45a049; /* Darker green on hover */
+			}
+
+			/* Add styles for the buttons */
+			#pasteButton,
+			#copyButton {
+				margin-right: 10px;
+				margin-bottom: 10px;
+				padding: 10px 20px;
+				font-size: 16px;
+				cursor: pointer;
+			}
+
+			/* Add styles for the copy button */
+			#copyButton {
+				margin-bottom: 10px;
+				padding: 10px 20px;
+				font-size: 16px;
+				cursor: pointer;
 			}
 		</style>
 	</head>
 	<body>
 		<h1>Cumberland</h1>
-		<p>A tool to highlight and manipulate text based on certain rules. Based on the project "Highlight Within Textarea" by Will Boyd.</p>
+		<p>Paste text into the textarea below and errors will be highlighted according to their severity. Updates will occur in realtime.</p>
+		<p>Items highlighted in red must be corrected. Items highlighted in orange are recommended changes. Items highlighted in blue are optional corrections. Items highlighted in purple require manual review.</p>
 
 		<section>
-			<h2>String Highlighting</h2>
-			<p>Note that this is case-insensitive.</p>
-			<textarea class="string-example">Potato potato tomato potato.</textarea>
-			<script>
-$('.string-example').highlightWithinTextarea({
-    highlight: 'potato'
-});
-			</script>
-		</section>
+			<!-- Remove paste button and add clear and reset buttons -->
+			<button id="clearButton">Clear Textarea</button>
+			<button id="resetButton">Reset to Initial Content</button>
+			<button id="copyButton">Copy to Clipboard</button>
+			
+			<textarea class="highlight-example">Phone numbers: 123-456-7890 (correct)
+(123) 456-7890 (incorrect)
+123.456.7890 (incorrect)
 
-		<section>
-			<h2>Multiple Spaces Highlighting</h2>
-			<p>This will highlight two or more consecutive space characters.</p>
-			<textarea class="space-example">This  has  multiple   spaces   in   it.</textarea>
+Dates: August 31 (correct)
+May 2 (correct)
+Oct. 27 (incorrect)
+June 31st (incorrect)
+September 15, 2023 (incorrect)
+
+This  has  multiple   spaces   in   it.
+• Bullet point with spaces
+•Another bullet without space
+  • Indented bullet point
+Regular line without bullet
+This line has trailing spaces   
+Here are some “curly quotes” and ‘single curly quotes’.
+Check out this website: https://www.example.com
+Or this one: http://subdomain.example.co.uk/page?param=value
+This & that are connected by an ampersand.
+This #hashtag should be highlighted.
+This is item no. 1 in the list.
+That is item no. 2 in the sequence.
+
+The NASA mission to the ISS was successful.
+FBI and CIA are well-known acronyms.
+Some words like MacBook or iPhone aren't true acronyms but may be highlighted.
+This sentence has NO acronyms but might trigger a false positive.
+
+Times of day examples:
+Correct: 11:30 a.m.
+Correct: 2:45 p.m.
+Correct: 6 p.m.
+Incorrect: 8:00 AM
+Incorrect: 9:20pm
+Incorrect: 7:15 pm
+Incorrect: 3:30P.M.
+Incorrect: 10:00 A.M.
+Incorrect: 1:05a.m.
+Incorrect: 4:30 P.M
+Incorrect: 5PM
+Correct: 9 a.m.
+
+For more information, click here to visit our website.
+Click Here for details (this should also be highlighted).
+</textarea>
+			
+			<h3>Highlighting Rules</h3>
+			<ul class="rules-list">
+				<li>Level 1 (Red)
+					<ul>
+						<li>Phone numbers not in the format ###-###-####</li>
+						<li>Dates not in the format "Month Day" (e.g., "August 31")</li>
+						<li>Ampersands (&)</li>
+						<li>Hash symbols (#)</li>
+						<li>Use of "no." abbreviation</li>
+						<li>Times of day not in the format "11:30 a.m.", "2:45 p.m.", or "6 p.m." (incorrect AM/PM format, missing spaces, or incorrect punctuation)</li>
+						<li>Use of the phrase "click here"</li>
+					</ul>
+				</li>
+				<li>Level 2 (Orange)
+					<ul>
+						<li>Two or more consecutive space characters</li>
+						<li>Bullet points at the beginning of lines (including following spaces)</li>
+						<li>URLs</li>
+						<li>Soft breaks (line breaks within paragraphs)</li>
+					</ul>
+				</li>
+				<li>Level 3 (Blue)
+					<ul>
+						<li>Trailing space characters at the end of lines</li>
+							<li>Curly quotes (single or double)</li>
+					</ul>
+				</li>
+				<li>Level 4 (Purple)
+					<ul>
+						<li>Potential acronyms (two or more consecutive capital letters)</li>
+					</ul>
+				</li>
+			</ul>
+			
 			<script>
-$('.space-example').highlightWithinTextarea({
-    highlight: /\s{2,}/g
-});
+				// Store the initial content
+				const initialContent = document.querySelector('.highlight-example').value;
+
+				// Clear button functionality
+				document.getElementById('clearButton').addEventListener('click', function() {
+					document.querySelector('.highlight-example').value = '';
+					$('.highlight-example').trigger('input'); // Trigger highlighting
+				});
+
+				// Reset button functionality
+				document.getElementById('resetButton').addEventListener('click', function() {
+					document.querySelector('.highlight-example').value = initialContent;
+					$('.highlight-example').trigger('input'); // Trigger highlighting
+				});
+
+				// Copy button functionality (unchanged)
+				document.getElementById('copyButton').addEventListener('click', function() {
+					var textarea = document.querySelector('.highlight-example');
+					textarea.select();
+					navigator.clipboard.writeText(textarea.value)
+						.then(() => {
+							this.textContent = 'Copied!';
+							setTimeout(() => {
+								this.textContent = 'Copy to Clipboard';
+							}, 2000);
+						})
+						.catch(err => {
+							console.error('Failed to copy text: ', err);
+							this.textContent = 'Copy Failed';
+							setTimeout(() => {
+								this.textContent = 'Copy to Clipboard';
+							}, 2000);
+						});
+				});
+
+				// Highlighting rules (unchanged)
+				$('.highlight-example').highlightWithinTextarea({
+					highlight: [
+						{
+							highlight: /(\()?\d{3}((\))|(\.)|\s)?\s*\d{3}(\.|-)?\s*\d{4}(?!-)/g,
+							className: 'red'
+						},
+						{
+							highlight: /\b(?!(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}\b)(\w+\.?\s\d{1,2}(?:st|nd|rd|th)?|\w+\s\d{1,2},?\s\d{4})/g,
+							className: 'red'
+						},
+						{
+							highlight: /&/g,
+							className: 'red'
+						},
+						{
+							highlight: /#/g,
+							className: 'red'
+						},
+						{
+							highlight: /\bno\.\s*\d+/gi,
+							className: 'red'
+						},
+						{
+							highlight: /\b(?:1[0-2]|0?[1-9]):[0-5][0-9](?:\s*(?:AM|PM|A\.M\.|P\.M\.)|[ap]\.?m\.?(?!\.)|\s+[ap]m|\s+[AP]M)\b/g,
+							className: 'red'
+						},
+						{
+							highlight: /\bclick here\b/gi,
+							className: 'red'
+						},
+						{
+							highlight: /\s{2,}/g,
+							className: 'orange'
+						},
+						{
+							highlight: /^[•]\s*/gm,
+							className: 'orange'
+						},
+						{
+							highlight: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
+							className: 'orange'
+						},
+						{
+							highlight: /(?<=\S)\n(?=\S)/g,
+							className: 'orange'
+						},
+						{
+							highlight: /[ \t]+$/gm,
+							className: 'blue'
+						},
+						{
+							highlight: /[“”‘’]/g,
+							className: 'blue'
+						},
+						{
+							highlight: /\b[A-Z]{2,}\b/g,
+							className: 'purple'
+						},
+						{
+							highlight: /\b(?!\d{1,2}(:\d{2})? [ap]\.m\.)\d{1,2}(:\d{2})?\s*[ap]\.?m?\.?\b/gi,
+							className: 'red'
+						}
+					]
+				});
 			</script>
 		</section>
 
