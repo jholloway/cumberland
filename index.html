@@ -115,11 +115,24 @@
 (123) 456-7890 (incorrect)
 123.456.7890 (incorrect)
 
-Dates: August 31 (correct)
-May 2 (correct)
-Oct. 27 (incorrect)
-June 31st (incorrect)
-September 15, 2023 (incorrect)
+Date examples:
+Correct: August 31
+Correct: May 2
+Correct: September 15, 2023
+Incorrect: Oct. 27
+Incorrect: Jun 31st
+Incorrect: Sept. 15
+Incorrect: June 31st
+Incorrect: December 32
+This happened in 2021. (should not be highlighted)
+The event occurred in 2018. (should not be highlighted)
+There were roughly 5 participants. (should not be highlighted)
+Chapter 3 begins on page 45. (should not be highlighted)
+The meeting is on Jun 1 p.m. (should not be highlighted)
+Incorrect: Mar. 5th
+Correct: March 5
+Incorrect: April 31
+Correct: November 22, 2023
 
 This  has  multiple   spaces   in   it.
 • Bullet point with spaces
@@ -236,7 +249,7 @@ Click Here for details (this should also be highlighted).
 							className: 'red'
 						},
 						{
-							highlight: /\b(?!(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}\b|\d{4}\b)(\w+\.?\s\d{1,2}(?:st|nd|rd|th)?|\w+\s\d{1,2},?\s\d{4})/g,
+							highlight: /\b(?!(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}(,\s\d{4})?\b)((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|January|February|March|April|June|July|August|September|October|November|December)\.?\s\d{1,2}(?:st|nd|rd|th)?(?!,\s\d{4}))(?!\s*[ap]\.m\.)\b/gi,
 							className: 'red'
 						},
 						{
