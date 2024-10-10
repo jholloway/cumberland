@@ -86,8 +86,8 @@
 		</style>
 	</head>
 	<body>
-		<h1>Cumberland</h1>
-		<p>Paste text into the textarea below and errors will be highlighted according to their severity. Updates will occur in realtime.</p>
+		<h1>🌊 Cumberland</h1>
+		<p>Paste text below and errors will be highlighted according to their severity. Updates will occur in realtime.</p>
 
 		<section>
 
@@ -96,64 +96,49 @@
 			<button id="copyButton">Copy Text to Clipboard</button>
 			
 			<textarea class="highlight-example">
-Phone numbers: 123-456-7890 (correct)
-(123) 456-7890 (incorrect)
-123.456.7890 (incorrect)
+===========================
+Level 1 - Must be corrected
+===========================
 
-Date examples:
-Correct: August 31
-Correct: May 2
-Correct: September 15, 2023
-Incorrect: Oct. 27
-Incorrect: Jun 31st
-Incorrect: Sept. 15
-Incorrect: June 31st
-Incorrect: December 32
-This happened in 2021. (should not be highlighted)
-The event occurred in 2018. (should not be highlighted)
-There were roughly 5 participants. (should not be highlighted)
-Chapter 3 begins on page 45. (should not be highlighted)
-The meeting is on Jun 1 p.m. (should not be highlighted)
-Incorrect: Mar. 5th
-Correct: March 5
-Incorrect: April 31
-Correct: November 22, 2023
+Phone number format: 123-456-7890 is correct. (123) 456-7890 is incorrect. 123.456.7890 is incorrect.
 
-This  has  multiple   spaces   in   it.
+Date format: August 31 is correct. Oct. 31 is incorrect. Sept 15th is incorrect. June 7th is incorrect.
+
+Time format: 11:30 a.m. is correct. 8:00 AM is incorrect. 9:20pm is incorrect. 7:15 pm is incorrect.
+
+Ampersands: Any & character should match. & & &
+
+Hash symbols: Any # character should match. # # #
+
+"No." abbreviation: Any "no." abbreviation should match. no. 1 should match. no. 123 should match.
+
+"Click here" phrase: Any "click here" phrase should match. click here should match. Click Here should match.
+
+=============================
+Level 2 - Recommended changes
+=============================
+
+Double spaces: This  has  multiple   spaces   in   it. Any double spaces should match.
+
+Bullet points: Lines beginning with a bullet point should match, including following spaces. Example:
 • Bullet point with spaces
 •Another bullet without space
-  • Indented bullet point
-Regular line without bullet
-This line has trailing spaces   
-Here are some “curly quotes” and ‘single curly quotes’.
-Check out this website: https://www.example.com
-Or this one: http://subdomain.example.co.uk/page?param=value
-This & that are connected by an ampersand.
-This #hashtag should be highlighted.
-This is item no. 1 in the list.
-That is item no. 2 in the sequence.
 
-The NASA mission to the ISS was successful.
-FBI and CIA are well-known acronyms.
-Some words like MacBook or iPhone aren't true acronyms but may be highlighted.
-This sentence has NO acronyms but might trigger a false positive.
+URLs: https://www.example.com should match. http://subdomain.example.co.uk/page?param=value should match.
 
-Times of day examples:
-Correct: 11:30 a.m.
-Correct: 2:45 p.m.
-Correct: 6 p.m.
-Incorrect: 8:00 AM
-Incorrect: 9:20pm
-Incorrect: 7:15 pm
-Incorrect: 3:30P.M.
-Incorrect: 10:00 A.M.
-Incorrect: 1:05a.m.
-Incorrect: 4:30 P.M
-Incorrect: 5PM
-Correct: 9 a.m.
+==============================
+Level 3 - Optional corrections
+==============================
 
-For more information, click here to visit our website.
-Click Here for details (this should also be highlighted).
+Trailing spaces: Trailing space characters at the end of lines should match. 
+Curly quotes: Any curly quotes should match. “Curly quotes” and ‘Single curly quotes’ should match.
+
+===============================
+Level 4 - Require manual review
+===============================
+
+Acronyms: Any acronyms should match. NASA mission should match. FBI and CIA should match.
+Words in ALL CAPS will also MATCH according to the acronym rule.
 </textarea>
 			
 			<h3>Highlighting Rules</h3>
@@ -257,7 +242,7 @@ Click Here for details (this should also be highlighted).
 							className: 'red'
 						},
 						{
-							highlight: /\s{2,}/g,
+							highlight: /[^\S\r\n]{2,}(?!$)/gm,
 							className: 'orange'
 						},
 						{
