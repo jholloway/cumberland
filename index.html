@@ -8,7 +8,8 @@
 
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<!-- Removed: <script src="https://cdn.jsdelivr.net/npm/title-case@3.0.3/dist/index.umd.min.js"></script> -->
 
 		<!-- highlight-within-textarea CSS/JS -->
 		<link href="jquery.highlight-within-textarea.css" rel="stylesheet">
@@ -83,6 +84,52 @@
 				background-color: #45a049;
 			}
 
+			#quickTextInput {
+				padding: 5px;
+				font-size: 16px;
+			}
+
+			#lowercaseButton, #titleCaseButton {
+				margin-right: 10px;
+				margin-bottom: 10px;
+				padding: 10px 20px;
+				font-size: 16px;
+				cursor: pointer;
+				background-color: #4CAF50;
+				color: white;
+				border: none;
+				border-radius: 5px;
+				transition: background-color 0.3s;
+			}
+
+			#lowercaseButton:hover, #titleCaseButton:hover {
+				background-color: #45a049;
+			}
+
+			.manipulation-button {
+				margin-right: 10px;
+				margin-bottom: 10px;
+				padding: 10px 20px;
+				font-size: 16px;
+				cursor: pointer;
+				background-color: #4CAF50; /* Green background */
+				color: white;
+				border: none;
+				border-radius: 5px;
+				transition: background-color 0.3s;
+			}
+
+			.manipulation-button:hover {
+				background-color: #45a049; /* Darker green on hover */
+			}
+
+			#quickTextInput {
+				padding: 5px;
+				font-size: 16px;
+				width: 100%;
+				margin-top: 10px;
+				box-sizing: border-box;
+			}
 		</style>
 	</head>
 	<body>
@@ -91,9 +138,9 @@
 
 		<section>
 
-			<button id="clearButton">Clear Example Text</button>
-			<button id="resetButton">Restore Example Text</button>
-			<button id="copyButton">Copy Text to Clipboard</button>
+			<button id="clearButton">Clear Textarea</button>
+			<button id="resetButton">Reset to Initial Content</button>
+			<button id="copyButton">Copy to Clipboard</button>
 			
 			<textarea class="highlight-example">
 ===========================
@@ -144,6 +191,17 @@ Acronyms: Any acronyms should match. NASA mission should match. FBI and CIA shou
 Words in ALL CAPS will also MATCH according to the acronym rule.
 </textarea>
 			
+			<!-- New text manipulation section -->
+			<div style="margin-top: 20px;">
+				<h3>Quick Text Manipulations</h3>
+				<button id="lowercaseButton" class="manipulation-button">Lowercase</button>
+				<button id="titleCaseButton" class="manipulation-button">Title Case</button>
+				<button id="removeSpacesButton" class="manipulation-button">Remove Extra Spaces</button>
+				<button id="removeBulletsButton" class="manipulation-button">Remove Bullets and Leading Spaces</button>
+				<br>
+				<input type="text" id="quickTextInput" style="width: 100%; margin-top: 10px;" placeholder="Paste text here for quick manipulations">
+			</div>
+
 			<script>
 				// Store the initial content
 				const initialContent = document.querySelector('.highlight-example').value;
@@ -247,6 +305,47 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 						}
 					]
 				});
+
+				// New script for text manipulations on the input field
+				document.querySelectorAll('.manipulation-button').forEach(button => {
+					button.addEventListener('click', function() {
+						var input = document.getElementById('quickTextInput');
+						switch(this.id) {
+							case 'lowercaseButton':
+								input.value = input.value.toLowerCase();
+								break;
+							case 'titleCaseButton':
+								input.value = toTitleCase(input.value);
+								break;
+							case 'removeSpacesButton':
+								input.value = input.value.replace(/\s+/g, ' ').trim();
+								break;
+							case 'removeBulletsButton':
+								input.value = input.value.replace(/^[•\-\*\s]+/, '').trim();
+								break;
+						}
+					});
+				});
+
+				// Title Case function
+				function toTitleCase(str) {
+					var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|vs?\.?|via)$/i;
+
+					return str.replace(/[A-Za-z0-9\u00C0-\u00FF]+[^\s-]*/g, function(match, index, title) {
+						if (index > 0 && index + match.length !== title.length &&
+							match.search(smallWords) > -1 && title.charAt(index - 2) !== ":" &&
+							(title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&
+							title.charAt(index - 1).search(/[^\s-]/) < 0) {
+							return match.toLowerCase();
+						}
+
+						if (match.substr(1).search(/[A-Z]|\../) > -1) {
+							return match;
+						}
+
+						return match.charAt(0).toUpperCase() + match.substr(1);
+					});
+				}
 			</script>
 		</section>
 
