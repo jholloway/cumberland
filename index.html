@@ -9,9 +9,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<!-- Removed: <script src="https://cdn.jsdelivr.net/npm/title-case@3.0.3/dist/index.umd.min.js"></script> -->
 
-		<!-- highlight-within-textarea CSS/JS -->
 		<link href="jquery.highlight-within-textarea.css" rel="stylesheet">
 		<script src="jquery.highlight-within-textarea.js"></script>
 
@@ -23,7 +21,7 @@
 
 			.hwt-content {
 				width: 100%;
-				height: 1200px;
+				height: 1400px;
 				padding: 20px;
 				border: 1px solid #adb5bd;
 				color: inherit;
@@ -112,7 +110,7 @@
 				padding: 10px 20px;
 				font-size: 16px;
 				cursor: pointer;
-				background-color: #4CAF50; /* Green background */
+				background-color: #4CAF50;
 				color: white;
 				border: none;
 				border-radius: 5px;
@@ -120,7 +118,7 @@
 			}
 
 			.manipulation-button:hover {
-				background-color: #45a049; /* Darker green on hover */
+				background-color: #45a049;
 			}
 
 			#quickTextInput {
@@ -138,9 +136,9 @@
 
 		<section>
 
-			<button id="clearButton">Clear Textarea</button>
-			<button id="resetButton">Reset to Initial Content</button>
-			<button id="copyButton">Copy to Clipboard</button>
+			<button id="clearButton">❌ Clear Example Text</button>
+			<button id="resetButton">🔄 Reset Example Text</button>
+			<button id="copyButton">📋 Copy Text to Clipboard</button>
 			
 			<textarea class="highlight-example">
 ===========================
@@ -167,7 +165,7 @@ Level 2 - Recommended changes
 
 Double spaces: This  has  multiple   spaces   in   it. Any double spaces should match.
 
-Bullet points: Lines beginning with a bullet point should match, including following spaces. Example:
+Bullet points: Lines beginning with a bullet point should match, including following spaces.
 • Bullet point with spaces
 •Another bullet without space
 
@@ -191,15 +189,17 @@ Acronyms: Any acronyms should match. NASA mission should match. FBI and CIA shou
 Words in ALL CAPS will also MATCH according to the acronym rule.
 </textarea>
 			
-			<!-- New text manipulation section -->
+			<!-- Text manipulation section -->
 			<div style="margin-top: 20px;">
 				<h3>Quick Text Manipulations</h3>
-				<button id="lowercaseButton" class="manipulation-button">Lowercase</button>
-				<button id="titleCaseButton" class="manipulation-button">Title Case</button>
-				<button id="removeSpacesButton" class="manipulation-button">Remove Extra Spaces</button>
-				<button id="removeBulletsButton" class="manipulation-button">Remove Bullets and Leading Spaces</button>
+				<button id="lowercaseButton" class="manipulation-button">🔽 lowercase</button>
+				<button id="titleCaseButton" class="manipulation-button">🔼 Title Case</button>
+				<button id="removeSpacesButton" class="manipulation-button">👾 Remove Extra Spaces</button>
+				<button id="removeBulletsButton" class="manipulation-button">🔫 Remove Bullets and Leading Spaces</button>
 				<br>
 				<input type="text" id="quickTextInput" style="width: 100%; margin-top: 10px;" placeholder="Paste text here for quick manipulations">
+				<!-- New character count display -->
+				<div id="charCountDisplay" style="margin-top: 5px; font-size: 14px; color: #666;">Characters: 0</div>
 			</div>
 
 			<script>
@@ -218,7 +218,7 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 					$('.highlight-example').trigger('input'); // Trigger highlighting
 				});
 
-				// Copy button functionality (unchanged)
+				// Copy button functionality
 				document.getElementById('copyButton').addEventListener('click', function() {
 					var textarea = document.querySelector('.highlight-example');
 					textarea.select();
@@ -238,7 +238,7 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 						});
 				});
 
-				// Highlighting rules (unchanged)
+				// Highlighting rules
 				$('.highlight-example').highlightWithinTextarea({
 					highlight: [
 						{
@@ -306,7 +306,17 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 					]
 				});
 
-				// New script for text manipulations on the input field
+				// Character count update function
+				function updateCharCount() {
+					var input = document.getElementById('quickTextInput');
+					var charCount = input.value.length;
+					document.getElementById('charCountDisplay').textContent = 'Characters: ' + charCount;
+				}
+
+				// Add event listener for real-time updates
+				document.getElementById('quickTextInput').addEventListener('input', updateCharCount);
+
+				// Script for text manipulations on the input field
 				document.querySelectorAll('.manipulation-button').forEach(button => {
 					button.addEventListener('click', function() {
 						var input = document.getElementById('quickTextInput');
@@ -324,6 +334,7 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 								input.value = input.value.replace(/^[•\-\*\s]+/, '').trim();
 								break;
 						}
+						updateCharCount(); // Update character count after manipulation
 					});
 				});
 
