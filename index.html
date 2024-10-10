@@ -97,7 +97,7 @@
 			<button id="resetButton" class="button">🔄 Reset Example Text</button>
 			<button id="copyButton" class="button">📋 Copy Text to Clipboard</button>
 			
-			<textarea class="highlight-example">
+			<textarea class="highlightBox">
 ===========================
 Level 1 - Must be corrected
 ===========================
@@ -129,7 +129,7 @@ Lines beginning with a bullet point and following spaces up to a letter will be 
 
 URLs like https://www.example.com will be highlighted. http://subdomain.example.co.uk/page?param=value will be highlighted.
 
-Roadway abbreviations like Rd, Ave, St, Pk, Pkwy, Blvd, and Wy will be highlighted. Avenue should not be highlighted.
+Street abbreviations like Rd, Ave, St, Pk, Pkwy, Blvd will be highlighted. Avenue should not be highlighted.
 
 ==============================
 Level 3 - Optional corrections
@@ -139,9 +139,9 @@ Trailing space characters at the end of lines should be highlighted.
 
 Any curly quotes should be highlighted. “Curly quotes” and ‘Single curly quotes’ but not 'straight' "quotes" will be highlighted.
 
-===============================
-Level 4 - Require manual review
-===============================
+================================
+Level 4 - Requires manual review
+================================
 
 Any acronyms should match. NASA mission should match. FBI and CIA should match.
 Words in ALL CAPS will also MATCH according to the acronym rule.
@@ -149,36 +149,37 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 			
 			<!-- Text manipulation section -->
 			<div style="margin-top: 20px;">
-				<h3>Quick Text Manipulations</h3>
+				<h2>Quick Text Manipulations</h2>
 				<button id="lowercaseButton" class="button">🔽 lowercase</button>
 				<button id="titleCaseButton" class="button">🔼 Title Case</button>
 				<button id="removeSpacesButton" class="button">👾 Remove Extra Spaces</button>
 				<button id="removeBulletsButton" class="button">🔫 Remove Bullets</button>
 				<br>
 				<input type="text" id="quickTextInput" style="width: 100%; margin-top: 10px;" placeholder="Paste text here for quick manipulations">
-				<!-- New character count display -->
+				
+				<!-- Character count display -->
 				<div id="charCountDisplay" style="margin-top: 5px; font-size: 14px; color: #666;">Characters: 0</div>
 			</div>
 
 			<script>
 				// Store the initial content
-				const initialContent = document.querySelector('.highlight-example').value;
+				const initialContent = document.querySelector('.highlightBox').value;
 
 				// Clear button functionality
 				document.getElementById('clearButton').addEventListener('click', function() {
-					document.querySelector('.highlight-example').value = '';
-					$('.highlight-example').trigger('input'); // Trigger highlighting
+					document.querySelector('.highlightBox').value = '';
+					$('.highlightBox').trigger('input'); // Trigger highlighting
 				});
 
 				// Reset button functionality
 				document.getElementById('resetButton').addEventListener('click', function() {
-					document.querySelector('.highlight-example').value = initialContent;
-					$('.highlight-example').trigger('input'); // Trigger highlighting
+					document.querySelector('.highlightBox').value = initialContent;
+					$('.highlightBox').trigger('input'); // Trigger highlighting
 				});
 
 				// Copy button functionality
 				document.getElementById('copyButton').addEventListener('click', function() {
-					var textarea = document.querySelector('.highlight-example');
+					var textarea = document.querySelector('.highlightBox');
 					textarea.select();
 					navigator.clipboard.writeText(textarea.value)
 						.then(() => {
@@ -197,68 +198,82 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 				});
 
 				// Highlighting rules
-				$('.highlight-example').highlightWithinTextarea({
+				$('.highlightBox').highlightWithinTextarea({
 					highlight: [
+						// Phone numbers
 						{
 							highlight: /(\()?\d{3}((\))|(\.)|\s)?\s*\d{3}(\.|-)?\s*\d{4}(?!-)/g,
 							className: 'red'
 						},
+						// Dates
 						{
 							highlight: /\b(?!(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}(,\s\d{4})?\b)((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|January|February|March|April|June|July|August|September|October|November|December)\.?\s\d{1,2}(?:st|nd|rd|th)?(?!,\s\d{4}))(?!\s*[ap]\.m\.)\b/gi,
 							className: 'red'
 						},
+						// Ampersand
 						{
 							highlight: /&/g,
 							className: 'red'
 						},
+						// Hash
 						{
 							highlight: /#/g,
 							className: 'red'
 						},
+						// No.
 						{
 							highlight: /\bno\.\s*\d+\b/gi,
 							className: 'red'
 						},
+						// Click here
 						{
 							highlight: /\b(?:1[0-2]|0?[1-9]):[0-5][0-9](?:\s*(?:AM|PM|A\.M\.|P\.M\.)|[ap]\.?m\.?(?!\.)|\s+[ap]m|\s+[AP]M)\b/g,
 							className: 'red'
 						},
+						// Click here
 						{
 							highlight: /\bclick here\b/gi,
 							className: 'red'
 						},
+						// Extra spaces
 						{
 							highlight: /[^\S\r\n]{2,}(?!$)/gm,
 							className: 'orange'
 						},
+						// Bullets
 						{
 							highlight: /^[•]\s*/gm,
 							className: 'orange'
 						},
+						// URLs
 						{
 							highlight: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
 							className: 'orange'
 						},
+						// Trailing spaces
 						{
 							highlight: /[ \t]+$/gm,
 							className: 'blue'
 						},
+						// Curly quotes
 						{
 							highlight: /[“”‘’]/g,
 							className: 'blue'
 						},
+						// Acronyms
 						{
 							highlight: /\b[A-Z]{2,}\b/g,
 							className: 'purple'
 						},
+						// Times
 						{
 							highlight: /\b(?!\d{1,2}(:\d{2})? [ap]\.m\.)\d{1,2}(:\d{2})?\s*[ap]\.?m?\.?\b/gi,
 							className: 'red'
 						},
 						
-						// New rule for roadway abbreviations
+						// Street abbreviations
 						{
-							highlight: /\b(Rd|Ave|St|Pk|Pkwy|Blvd|Wy)\b/g,
+							highlight: /\b(Rd|Ave|St|Pk|Pkwy|Blvd|Wy|Ct|Dr|Cir|Ctr|Hwy|Ln|Pl|Rte|Sq|Ter|Ft|Sq)\.?\b/g,
 							className: 'orange'
 						}
 					]
