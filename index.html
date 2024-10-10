@@ -4,6 +4,8 @@
 		<meta charset="utf-8">
 		<title>Cumberland</title>
 
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -59,7 +61,7 @@
 				margin-top: 60px;
 			}
 
-			/* Updated button styles */
+			/* Simplified button styles */
 			#clearButton,
 			#resetButton,
 			#copyButton {
@@ -81,35 +83,18 @@
 				background-color: #45a049; /* Darker green on hover */
 			}
 
-			/* Add styles for the buttons */
-			#pasteButton,
-			#copyButton {
-				margin-right: 10px;
-				margin-bottom: 10px;
-				padding: 10px 20px;
-				font-size: 16px;
-				cursor: pointer;
-			}
-
-			/* Add styles for the copy button */
-			#copyButton {
-				margin-bottom: 10px;
-				padding: 10px 20px;
-				font-size: 16px;
-				cursor: pointer;
-			}
+			/* ... (other styles) ... */
 		</style>
 	</head>
 	<body>
 		<h1>Cumberland</h1>
 		<p>Paste text into the textarea below and errors will be highlighted according to their severity. Updates will occur in realtime.</p>
-		<p>Items highlighted in red must be corrected. Items highlighted in orange are recommended changes. Items highlighted in blue are optional corrections. Items highlighted in purple require manual review.</p>
 
 		<section>
 			<!-- Remove paste button and add clear and reset buttons -->
-			<button id="clearButton">Clear Textarea</button>
-			<button id="resetButton">Reset to Initial Content</button>
-			<button id="copyButton">Copy to Clipboard</button>
+			<button id="clearButton">Clear Example Text</button>
+			<button id="resetButton">Reset Example Text</button>
+			<button id="copyButton">Copy Text to Clipboard</button>
 			
 			<textarea class="highlight-example">Phone numbers: 123-456-7890 (correct)
 (123) 456-7890 (incorrect)
@@ -173,7 +158,7 @@ Click Here for details (this should also be highlighted).
 			
 			<h3>Highlighting Rules</h3>
 			<ul class="rules-list">
-				<li>Level 1 (Red)
+				<li>Level 1 (Red) - Must be corrected
 					<ul>
 						<li>Phone numbers not in the format ###-###-####</li>
 						<li>Dates not in the format "Month Day" (e.g., "August 31")</li>
@@ -184,21 +169,20 @@ Click Here for details (this should also be highlighted).
 						<li>Use of the phrase "click here"</li>
 					</ul>
 				</li>
-				<li>Level 2 (Orange)
+				<li>Level 2 (Orange) - Recommended changes
 					<ul>
 						<li>Two or more consecutive space characters</li>
 						<li>Bullet points at the beginning of lines (including following spaces)</li>
 						<li>URLs</li>
-						<li>Soft breaks (line breaks within paragraphs)</li>
 					</ul>
 				</li>
-				<li>Level 3 (Blue)
+				<li>Level 3 (Blue) - Optional corrections
 					<ul>
 						<li>Trailing space characters at the end of lines</li>
 							<li>Curly quotes (single or double)</li>
 					</ul>
 				</li>
-				<li>Level 4 (Purple)
+				<li>Level 4 (Purple) - Require manual review
 					<ul>
 						<li>Potential acronyms (two or more consecutive capital letters)</li>
 					</ul>
@@ -282,10 +266,6 @@ Click Here for details (this should also be highlighted).
 						},
 						{
 							highlight: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
-							className: 'orange'
-						},
-						{
-							highlight: /(?<=\S)\n(?=\S)/g,
 							className: 'orange'
 						},
 						{
