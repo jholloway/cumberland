@@ -7,6 +7,7 @@
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
 
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 		<!-- highlight-within-textarea CSS/JS -->
@@ -41,7 +42,7 @@
 			}
 
 			.hwt-content mark.purple {
-				background-color: #e5d0ff; /* Soft purple color */
+				background-color: #e5d0ff;
 			}
 
 			* {
@@ -49,7 +50,7 @@
 			}
 
 			body {
-				max-width: 1200px; /* Increased max-width */
+				max-width: 1200px;
 				margin: 40px auto;
 				padding: 0 20px;
 				font: 18px/1.4 'Open Sans', sans-serif;
@@ -61,7 +62,6 @@
 				margin-top: 60px;
 			}
 
-			/* Simplified button styles */
 			#clearButton,
 			#resetButton,
 			#copyButton {
@@ -70,7 +70,7 @@
 				padding: 10px 20px;
 				font-size: 16px;
 				cursor: pointer;
-				background-color: #4CAF50; /* Green background */
+				background-color: #4CAF50;
 				color: white;
 				border: none;
 				border-radius: 5px;
@@ -80,10 +80,9 @@
 			#clearButton:hover,
 			#resetButton:hover,
 			#copyButton:hover {
-				background-color: #45a049; /* Darker green on hover */
+				background-color: #45a049;
 			}
 
-			/* ... (other styles) ... */
 		</style>
 	</head>
 	<body>
@@ -91,12 +90,13 @@
 		<p>Paste text into the textarea below and errors will be highlighted according to their severity. Updates will occur in realtime.</p>
 
 		<section>
-			<!-- Remove paste button and add clear and reset buttons -->
+
 			<button id="clearButton">Clear Example Text</button>
 			<button id="resetButton">Reset Example Text</button>
 			<button id="copyButton">Copy Text to Clipboard</button>
 			
-			<textarea class="highlight-example">Phone numbers: 123-456-7890 (correct)
+			<textarea class="highlight-example">
+Phone numbers: 123-456-7890 (correct)
 (123) 456-7890 (incorrect)
 123.456.7890 (incorrect)
 
