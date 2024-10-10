@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Cumberland</title>
+		<title>Cumberland | A copyediting tool</title>
 
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
 
@@ -86,13 +86,13 @@
 		</style>
 	</head>
 	<body>
-		<h1>🌊 Cumberland</h1>
+		<h1>🌊 Cumberland | A copyediting tool</h1>
 		<p>Paste text below and errors will be highlighted according to their severity. Updates will occur in realtime.</p>
 
 		<section>
 
 			<button id="clearButton">Clear Example Text</button>
-			<button id="resetButton">Reset Example Text</button>
+			<button id="resetButton">Restore Example Text</button>
 			<button id="copyButton">Copy Text to Clipboard</button>
 			
 			<textarea class="highlight-example">
@@ -126,11 +126,14 @@ Bullet points: Lines beginning with a bullet point should match, including follo
 
 URLs: https://www.example.com should match. http://subdomain.example.co.uk/page?param=value should match.
 
+Roadway abbreviations: Rd, Ave, St, Pk, Pkwy, Blvd, and Wy should match. Avenue should not match.
+
 ==============================
 Level 3 - Optional corrections
 ==============================
 
 Trailing spaces: Trailing space characters at the end of lines should match. 
+
 Curly quotes: Any curly quotes should match. “Curly quotes” and ‘Single curly quotes’ should match.
 
 ===============================
@@ -140,39 +143,6 @@ Level 4 - Require manual review
 Acronyms: Any acronyms should match. NASA mission should match. FBI and CIA should match.
 Words in ALL CAPS will also MATCH according to the acronym rule.
 </textarea>
-			
-			<h3>Highlighting Rules</h3>
-			<ul class="rules-list">
-				<li>Level 1 (Red) - Must be corrected
-					<ul>
-						<li>Phone numbers not in the format ###-###-####</li>
-						<li>Dates not in the format "Month Day" (e.g., "August 31")</li>
-						<li>Ampersands (&)</li>
-						<li>Hash symbols (#)</li>
-						<li>Use of "no." abbreviation</li>
-						<li>Times of day not in the format "11:30 a.m.", "2:45 p.m.", or "6 p.m." (incorrect AM/PM format, missing spaces, or incorrect punctuation)</li>
-						<li>Use of the phrase "click here"</li>
-					</ul>
-				</li>
-				<li>Level 2 (Orange) - Recommended changes
-					<ul>
-						<li>Two or more consecutive space characters</li>
-						<li>Bullet points at the beginning of lines (including following spaces)</li>
-						<li>URLs</li>
-					</ul>
-				</li>
-				<li>Level 3 (Blue) - Optional corrections
-					<ul>
-						<li>Trailing space characters at the end of lines</li>
-							<li>Curly quotes (single or double)</li>
-					</ul>
-				</li>
-				<li>Level 4 (Purple) - Require manual review
-					<ul>
-						<li>Potential acronyms (two or more consecutive capital letters)</li>
-					</ul>
-				</li>
-			</ul>
 			
 			<script>
 				// Store the initial content
@@ -268,6 +238,12 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 						{
 							highlight: /\b(?!\d{1,2}(:\d{2})? [ap]\.m\.)\d{1,2}(:\d{2})?\s*[ap]\.?m?\.?\b/gi,
 							className: 'red'
+						},
+						
+						// New rule for roadway abbreviations
+						{
+							highlight: /\b(Rd|Ave|St|Pk|Pkwy|Blvd|Wy)\b/g,
+							className: 'orange'
 						}
 					]
 				});
