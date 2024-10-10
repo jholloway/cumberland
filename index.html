@@ -14,6 +14,8 @@
 		<script src="jquery.highlight-within-textarea.js"></script>
 
 		<style>
+			/* Highlight box styles */
+
 			.hwt-container {
 				background-color: #f8f9fa;
 				width: 100%;
@@ -21,7 +23,7 @@
 
 			.hwt-content {
 				width: 100%;
-				height: 1600px;
+				height: 1800px;
 				padding: 20px;
 				border: 1px solid #adb5bd;
 				color: inherit;
@@ -44,6 +46,8 @@
 				background-color: #e5d0ff;
 			}
 
+			/* General styles */
+
 			* {
 				box-sizing: border-box;
 			}
@@ -61,14 +65,15 @@
 				margin-top: 60px;
 			}
 
-			/* Consolidated button styles */
+			/* Button styles */
+
 			.button {
 				margin-right: 10px;
 				margin-bottom: 10px;
 				padding: 10px 20px;
 				font-size: 16px;
 				cursor: pointer;
-				background-color: #4CAF50; /* Green background */
+				background-color: #4CAF50;
 				color: white;
 				border: none;
 				border-radius: 5px;
@@ -76,8 +81,10 @@
 			}
 
 			.button:hover {
-				background-color: #45a049; /* Darker green on hover */
+				background-color: #45a049;
 			}
+
+			/* Input field styles */
 
 			#quickTextInput {
 				width: 100%;
@@ -98,8 +105,14 @@
 			<button id="copyButton" class="button">📋 Copy Text to Clipboard</button>
 			
 			<textarea class="highlightBox">
+====================
+Level 0 | Plain text
+====================
+
+Any text pasted into this box will be stripped of formatting and is now plain text. Use the button above to copy text to the clipboard.
+
 ===========================
-Level 1 - Must be corrected
+Level 1 | Must be corrected
 ===========================
 
 Phone numbers formatted like 123-456-7890 are correct. (123) 456-7890 will be highlighted. 123.456.7890 will be highlighted.
@@ -117,7 +130,7 @@ Any "no." abbreviation followed by a number will be highlighted. no. 1 will be h
 Any "click here" phrase will be highlighted. click here will be highlighted. Click Here will be highlighted.
 
 =============================
-Level 2 - Recommended changes
+Level 2 | Recommended changes
 =============================
 
 Any double  spaces   or greater will    be     highlighted.
@@ -132,22 +145,23 @@ URLs like https://www.example.com will be highlighted. http://subdomain.example.
 Street abbreviations like Rd, Ave, St, Pk, Pkwy, Blvd will be highlighted. Avenue should not be highlighted.
 
 ==============================
-Level 3 - Optional corrections
+Level 3 | Optional corrections
 ==============================
 
 Trailing space characters at the end of lines should be highlighted. 
 
-Any curly quotes should be highlighted. “Curly quotes” and ‘Single curly quotes’ but not 'straight' "quotes" will be highlighted.
+“Curly quotes” and ‘Single curly quotes’ but not 'straight' "quotes" will be highlighted. (Smart quotes from Microsoft apps can sometimes be incorrect and it's safer to convert them to straight quotes.)
 
 ================================
-Level 4 - Requires manual review
+Level 4 | Requires manual review
 ================================
 
 Any acronyms should match. NASA mission should match. FBI and CIA should match.
 Words in ALL CAPS will also MATCH according to the acronym rule.
 </textarea>
 			
-			<!-- Text manipulation section -->
+			<!-- Text manipulation tool -->
+
 			<div style="margin-top: 20px;">
 				<h2>Quick Text Manipulations</h2>
 				<button id="lowercaseButton" class="button">🔽 lowercase</button>
@@ -155,29 +169,35 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 				<button id="removeSpacesButton" class="button">👾 Remove Extra Spaces</button>
 				<button id="removeBulletsButton" class="button">🔫 Remove Bullets</button>
 				<br>
-				<input type="text" id="quickTextInput" style="width: 100%; margin-top: 10px;" placeholder="Paste text here for quick manipulations">
+				<input type="text" id="quickTextInput" style="width: 100%; margin-top: 10px;" placeholder="Paste text here then use the buttons above to manipulate it">
 				
 				<!-- Character count display -->
+
 				<div id="charCountDisplay" style="margin-top: 5px; font-size: 14px; color: #666;">Characters: 0</div>
 			</div>
 
 			<script>
+
 				// Store the initial content
+
 				const initialContent = document.querySelector('.highlightBox').value;
 
 				// Clear button functionality
+
 				document.getElementById('clearButton').addEventListener('click', function() {
 					document.querySelector('.highlightBox').value = '';
 					$('.highlightBox').trigger('input'); // Trigger highlighting
 				});
 
 				// Reset button functionality
+
 				document.getElementById('resetButton').addEventListener('click', function() {
 					document.querySelector('.highlightBox').value = initialContent;
 					$('.highlightBox').trigger('input'); // Trigger highlighting
 				});
 
 				// Copy button functionality
+
 				document.getElementById('copyButton').addEventListener('click', function() {
 					var textarea = document.querySelector('.highlightBox');
 					textarea.select();
@@ -198,6 +218,7 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 				});
 
 				// Highlighting rules
+
 				$('.highlightBox').highlightWithinTextarea({
 					highlight: [
 						// Phone numbers
@@ -280,6 +301,7 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 				});
 
 				// Character count update function
+
 				function updateCharCount() {
 					var input = document.getElementById('quickTextInput');
 					var charCount = input.value.length;
@@ -287,9 +309,11 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 				}
 
 				// Add event listener for real-time updates
+
 				document.getElementById('quickTextInput').addEventListener('input', updateCharCount);
 
 				// Script for text manipulations on the input field
+
 				document.querySelectorAll('.button').forEach(button => {
 					button.addEventListener('click', function() {
 						var input = document.getElementById('quickTextInput');
@@ -312,6 +336,7 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 				});
 
 				// Title Case function
+
 				function toTitleCase(str) {
 					var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|vs?\.?|via)$/i;
 
