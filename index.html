@@ -61,71 +61,29 @@
 				margin-top: 60px;
 			}
 
-			#clearButton,
-			#resetButton,
-			#copyButton {
+			/* Consolidated button styles */
+			.button {
 				margin-right: 10px;
 				margin-bottom: 10px;
 				padding: 10px 20px;
 				font-size: 16px;
 				cursor: pointer;
-				background-color: #4CAF50;
+				background-color: #4CAF50; /* Green background */
 				color: white;
 				border: none;
 				border-radius: 5px;
 				transition: background-color 0.3s;
 			}
 
-			#clearButton:hover,
-			#resetButton:hover,
-			#copyButton:hover {
-				background-color: #45a049;
+			.button:hover {
+				background-color: #45a049; /* Darker green on hover */
 			}
 
 			#quickTextInput {
-				padding: 5px;
-				font-size: 16px;
-			}
-
-			#lowercaseButton, #titleCaseButton {
-				margin-right: 10px;
-				margin-bottom: 10px;
-				padding: 10px 20px;
-				font-size: 16px;
-				cursor: pointer;
-				background-color: #4CAF50;
-				color: white;
-				border: none;
-				border-radius: 5px;
-				transition: background-color 0.3s;
-			}
-
-			#lowercaseButton:hover, #titleCaseButton:hover {
-				background-color: #45a049;
-			}
-
-			.manipulation-button {
-				margin-right: 10px;
-				margin-bottom: 10px;
-				padding: 10px 20px;
-				font-size: 16px;
-				cursor: pointer;
-				background-color: #4CAF50;
-				color: white;
-				border: none;
-				border-radius: 5px;
-				transition: background-color 0.3s;
-			}
-
-			.manipulation-button:hover {
-				background-color: #45a049;
-			}
-
-			#quickTextInput {
-				padding: 5px;
-				font-size: 16px;
 				width: 100%;
 				margin-top: 10px;
+				padding: 5px;
+				font-size: 16px;
 				box-sizing: border-box;
 			}
 		</style>
@@ -135,9 +93,9 @@
 		<h1>🌊 Cumberland</h1>
 		<p>This is a simple copyediting tool. Paste text below and errors will be highlighted according to rules. Updates will occur in realtime.</p>
 
-			<button id="clearButton">❌ Clear Text</button>
-			<button id="resetButton">🔄 Reset Example Text</button>
-			<button id="copyButton">📋 Copy Text to Clipboard</button>
+			<button id="clearButton" class="button">❌ Clear Text</button>
+			<button id="resetButton" class="button">🔄 Reset Example Text</button>
+			<button id="copyButton" class="button">📋 Copy Text to Clipboard</button>
 			
 			<textarea class="highlight-example">
 ===========================
@@ -192,10 +150,10 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 			<!-- Text manipulation section -->
 			<div style="margin-top: 20px;">
 				<h3>Quick Text Manipulations</h3>
-				<button id="lowercaseButton" class="manipulation-button">🔽 lowercase</button>
-				<button id="titleCaseButton" class="manipulation-button">🔼 Title Case</button>
-				<button id="removeSpacesButton" class="manipulation-button">👾 Remove Extra Spaces</button>
-				<button id="removeBulletsButton" class="manipulation-button">🔫 Remove Bullets</button>
+				<button id="lowercaseButton" class="button">🔽 lowercase</button>
+				<button id="titleCaseButton" class="button">🔼 Title Case</button>
+				<button id="removeSpacesButton" class="button">👾 Remove Extra Spaces</button>
+				<button id="removeBulletsButton" class="button">🔫 Remove Bullets</button>
 				<br>
 				<input type="text" id="quickTextInput" style="width: 100%; margin-top: 10px;" placeholder="Paste text here for quick manipulations">
 				<!-- New character count display -->
@@ -317,7 +275,7 @@ Words in ALL CAPS will also MATCH according to the acronym rule.
 				document.getElementById('quickTextInput').addEventListener('input', updateCharCount);
 
 				// Script for text manipulations on the input field
-				document.querySelectorAll('.manipulation-button').forEach(button => {
+				document.querySelectorAll('.button').forEach(button => {
 					button.addEventListener('click', function() {
 						var input = document.getElementById('quickTextInput');
 						switch(this.id) {
