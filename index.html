@@ -236,7 +236,7 @@ Click Here for details (this should also be highlighted).
 							className: 'red'
 						},
 						{
-							highlight: /\b(?!(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}\b)(\w+\.?\s\d{1,2}(?:st|nd|rd|th)?|\w+\s\d{1,2},?\s\d{4})/g,
+							highlight: /\b(?!(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}\b|\d{4}\b)(\w+\.?\s\d{1,2}(?:st|nd|rd|th)?|\w+\s\d{1,2},?\s\d{4})/g,
 							className: 'red'
 						},
 						{
@@ -248,7 +248,7 @@ Click Here for details (this should also be highlighted).
 							className: 'red'
 						},
 						{
-							highlight: /\bno\.\s*\d+/gi,
+							highlight: /\bno\.\s*\d+\b/gi,
 							className: 'red'
 						},
 						{
