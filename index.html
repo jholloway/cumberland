@@ -145,47 +145,48 @@
 Level 1 - Must be corrected
 ===========================
 
-Phone number format: 123-456-7890 is correct. (123) 456-7890 is incorrect. 123.456.7890 is incorrect.
+Phone numbers formatted like 123-456-7890 are correct. (123) 456-7890 will be highlighted. 123.456.7890 will be highlighted.
 
-Date format: August 31 is correct. Oct. 31 is incorrect. Sept 15th is incorrect. June 7th is incorrect.
+Dates formatted like August 31 are correct. Oct. 31 will be highlighted. Sept 15th will be highlighted. June 7th will be highlighted.
 
-Time format: 11:30 a.m. is correct. 8:00 AM is incorrect. 9:20pm is incorrect. 7:15 pm is incorrect.
+Times formatted like 11:30 a.m. are correct. 8:00 AM will be highlighted. 9:20pm will be highlighted. 7:15 pm will be highlighted.
 
-Ampersands: Any & character should match. & & &
+Any & character will be highlighted. & & &
 
-Hash symbols: Any # character should match. # # #
+Any # character will be highlighted. # # #
 
-"No." abbreviation: Any "no." abbreviation should match. no. 1 should match. no. 123 should match.
+Any "no." abbreviation followed by a number will be highlighted. no. 1 will be highlighted. no. 123 will be highlighted.
 
-"Click here" phrase: Any "click here" phrase should match. click here should match. Click Here should match.
+Any "click here" phrase will be highlighted. click here will be highlighted. Click Here will be highlighted.
 
 =============================
 Level 2 - Recommended changes
 =============================
 
-Double spaces: This  has  multiple   spaces   in   it. Any double spaces should match.
+Any double  spaces   or greater will    be     highlighted.
 
-Bullet points: Lines beginning with a bullet point should match, including following spaces.
+Lines beginning with a bullet point and following spaces up to a letter will be highlighted.
 • Bullet point with spaces
+•     Bullet point with several spaces
 •Another bullet without space
 
-URLs: https://www.example.com should match. http://subdomain.example.co.uk/page?param=value should match.
+URLs like https://www.example.com will be highlighted. http://subdomain.example.co.uk/page?param=value will be highlighted.
 
-Roadway abbreviations: Rd, Ave, St, Pk, Pkwy, Blvd, and Wy should match. Avenue should not match.
+Roadway abbreviations like Rd, Ave, St, Pk, Pkwy, Blvd, and Wy will be highlighted. Avenue should not be highlighted.
 
 ==============================
 Level 3 - Optional corrections
 ==============================
 
-Trailing spaces: Trailing space characters at the end of lines should match. 
+Trailing space characters at the end of lines should be highlighted. 
 
-Curly quotes: Any curly quotes should match. “Curly quotes” and ‘Single curly quotes’ should match.
+Any curly quotes should be highlighted. “Curly quotes” and ‘Single curly quotes’ but not 'straight' "quotes" will be highlighted.
 
 ===============================
 Level 4 - Require manual review
 ===============================
 
-Acronyms: Any acronyms should match. NASA mission should match. FBI and CIA should match.
+Any acronyms should match. NASA mission should match. FBI and CIA should match.
 Words in ALL CAPS will also MATCH according to the acronym rule.
 </textarea>
 			
