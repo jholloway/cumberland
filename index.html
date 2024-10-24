@@ -1,110 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Cumberland</title>
 
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
+<head>
+	<meta charset="utf-8">
+	<title>Cumberland</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
 
-		<script src="jquery-3.6.0.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
 
-		<link href="jquery.highlight-within-textarea.css" rel="stylesheet">
-		<script src="jquery.highlight-within-textarea.js"></script>
+	<script src="jquery-3.6.0.min.js"></script>
 
-		<style>
-			/* Highlight box styles */
+	<link href="jquery.highlight-within-textarea.css" rel="stylesheet">
+	<script src="jquery.highlight-within-textarea.js"></script>
 
-			.hwt-container {
-				background-color: #f8f9fa;
-				width: 100%;
-			}
+	<style>
+		/* Highlight box styles */
 
-			.hwt-content {
-				width: 100%;
-				height: 1800px;
-				padding: 20px;
-				border: 1px solid #adb5bd;
-				color: inherit;
-				font: 18px/25px 'Droid Sans Mono', sans-serif;
-			}
+		.hwt-container {
+			background-color: #f8f9fa;
+			width: 100%;
+		}
 
-			.hwt-content mark.red {
-				background-color: #ffc9c9;
-			}
+		.hwt-content {
+			width: 100%;
+			height: 1800px;
+			padding: 20px;
+			border: 1px solid #adb5bd;
+			color: inherit;
+			font: 18px/25px 'Droid Sans Mono', sans-serif;
+		}
 
-			.hwt-content mark.blue {
-				background-color: #a3daff;
-			}
+		.hwt-content mark.red {
+			background-color: #ffc9c9;
+		}
 
-			.hwt-content mark.orange {
-				background-color: #ffd8a8;
-			}
+		.hwt-content mark.blue {
+			background-color: #a3daff;
+		}
 
-			.hwt-content mark.purple {
-				background-color: #e5d0ff;
-			}
+		.hwt-content mark.orange {
+			background-color: #ffd8a8;
+		}
 
-			/* General styles */
+		.hwt-content mark.purple {
+			background-color: #e5d0ff;
+		}
 
-			* {
-				box-sizing: border-box;
-			}
+		/* General styles */
 
-			body {
-				max-width: 1200px;
-				margin: 40px auto;
-				padding: 0 20px;
-				font: 18px/1.4 'Open Sans', sans-serif;
-				color: #495057;
-				background-color: #f1f3f5;
-			}
+		* {
+			box-sizing: border-box;
+		}
 
-			section {
-				margin-top: 60px;
-			}
+		body {
+			max-width: 1200px;
+			margin: 40px auto;
+			padding: 0 20px;
+			font: 18px/1.4 'Open Sans', sans-serif;
+			color: #495057;
+			background-color: #f1f3f5;
+		}
 
-			/* Button styles */
+		section {
+			margin-top: 60px;
+		}
 
-			.button {
-				margin-right: 10px;
-				margin-bottom: 10px;
-				padding: 10px 20px;
-				font-size: 16px;
-				cursor: pointer;
-				background-color: #4CAF50;
-				color: white;
-				border: none;
-				border-radius: 5px;
-				transition: background-color 0.3s;
-			}
+		/* Button styles */
 
-			.button:hover {
-				background-color: #45a049;
-			}
+		.button {
+			margin-right: 10px;
+			margin-bottom: 10px;
+			padding: 10px 20px;
+			font-size: 16px;
+			cursor: pointer;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			transition: background-color 0.3s;
+		}
 
-			/* Input field styles */
+		.button:hover {
+			background-color: #45a049;
+		}
 
-			#quickTextInput {
-				width: 100%;
-				margin-top: 10px;
-				padding: 5px;
-				font-size: 16px;
-				box-sizing: border-box;
-			}
-		</style>
-	</head>
-	<body>
-		<section>
+		/* Input field styles */
+
+		#quickTextInput {
+			width: 100%;
+			margin-top: 10px;
+			padding: 5px;
+			font-size: 16px;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+
+<body>
+	<section>
 		<h1>🌊 Cumberland</h1>
 		<p>Paste text below and errors will be highlighted according to rules. Updates will occur in realtime. All checking and manipulation happens client-side via JavaScript. Nothing is saved anywhere or sent to a server.</p>
 
-			<button id="clearButton" class="button">❌ Clear Text</button>
-			<button id="resetButton" class="button">🔄 Reset Example Text</button>
-			<button id="copyButton" class="button">📋 Copy Text to Clipboard</button>
-			
-			<textarea class="highlightBox">
+		<button id="clearButton" class="button">❌ Clear Text</button>
+		<button id="resetButton" class="button">🔄 Reset Example Text</button>
+		<button id="copyButton" class="button">📋 Copy Text to Clipboard</button>
+
+		<textarea class="highlightBox">
 ====================
 Level 0 | Plain text
 ====================
@@ -159,218 +161,218 @@ Level 4 | Requires manual review
 Any acronyms should match. NASA mission should match. FBI and CIA should match.
 Words in ALL CAPS will also MATCH according to the acronym rule.
 </textarea>
-			
-			<!-- Text manipulation tool -->
 
-			<div style="margin-top: 20px;">
-				<h2>Quick Text Manipulations</h2>
-				<button id="lowercaseButton" class="button">🔤 lowercase</button>
-				<button id="titleCaseButton" class="button">🗞️ Title Case</button>
-				<button id="removeSpacesButton" class="button">👾 Remove Extra Spaces</button>
-				<button id="removeBulletsButton" class="button">🔫 Remove Bullets</button>
-				<br>
-				<input type="text" id="quickTextInput" style="width: 100%; margin-top: 10px;" placeholder="Paste text here then use the buttons above to manipulate it">
-				
-				<!-- Character count display -->
+		<!-- Text manipulation tool -->
 
-				<div id="charCountDisplay" style="margin-top: 5px; font-size: 14px; color: #666;">Characters: 0</div>
-			</div>
-			
-			<div>
-				<h2>Other Helpful Tools</h2>
-				<h3>Online Tools</h3>
-				<p>🧼 <a href="https://www.ohio.edu/oit/security/safe-computing/identifying-malicious-email/safelinks-decoder">SafeLinks URL Decoder</a><br>Paste a link from Outlook, get a real URL</p>
-				<p>📬 <a href="https://email-checker.net/email-extractor">Email Extractor</a><br>Paste a large body of text, get a clean list of email addresses in that text</p>
-				<p>🔡 <a href="https://texttools.org">Text Tools</a><br>A huge variety of text manipulation and formatting tools</p>
-				<h3>Windows Tools</h3>
-				<p>🛠️ <a href="https://learn.microsoft.com/en-us/windows/powertoys/">Microsoft PowerToys</a><br>Installable suite of micro-tools including a color picker, screen ruler, batch resize and rename, and many more</p>
-				<p>🎨 <a href="https://www.tpgi.com/color-contrast-checker/">Colour Contrast Analyser</a><br>Check WCAG compliance for contrast between foreground and background colors on any desktop app</p>
-				<p>📑 <a href="https://pac.pdf-accessibility.org/en">PAC 2024 PDF Accessibility Checker</a><br>Dive deep into PDF accessibility and see an interactive preview of document structure for screen readers</p>
-				<p>🗜️ <a href="https://nikkhokkho.sourceforge.io/?page=FileOptimizern">FileOptimizer</a><br>Compress file size for a wide variety of multimedia and document formats</p>
-				<p>🏞️ <a href="https://www.faststone.org/FSResizerDetail.htm">FastStone Photo Resizer</a><br>Batch image conversion and resize with advanced options</p>
-			</div>
+		<div style="margin-top: 20px;">
+			<h2>Quick Text Manipulations</h2>
+			<button id="lowercaseButton" class="button">🔤 lowercase</button>
+			<button id="titleCaseButton" class="button">🗞️ Title Case</button>
+			<button id="removeSpacesButton" class="button">👾 Remove Extra Spaces</button>
+			<button id="removeBulletsButton" class="button">🔫 Remove Bullets</button>
+			<br>
+			<input type="text" id="quickTextInput" style="width: 100%; margin-top: 10px;" placeholder="Paste text here then use the buttons above to manipulate it">
 
-			<script>
+			<!-- Character count display -->
 
-				// Store the initial content
+			<div id="charCountDisplay" style="margin-top: 5px; font-size: 14px; color: #666;">Characters: 0</div>
+		</div>
 
-				const initialContent = document.querySelector('.highlightBox').value;
+		<div>
+			<h2>Other Helpful Tools</h2>
+			<h3>Online Tools</h3>
+			<p>🧼 <a href="https://www.ohio.edu/oit/security/safe-computing/identifying-malicious-email/safelinks-decoder">SafeLinks URL Decoder</a><br>Paste a link from Outlook, get a real URL</p>
+			<p>📬 <a href="https://email-checker.net/email-extractor">Email Extractor</a><br>Paste a large body of text, get a clean list of email addresses in that text</p>
+			<p>🔡 <a href="https://texttools.org">Text Tools</a><br>A huge variety of text manipulation and formatting tools</p>
+			<h3>Windows Tools</h3>
+			<p>🛠️ <a href="https://learn.microsoft.com/en-us/windows/powertoys/">Microsoft PowerToys</a><br>Installable suite of micro-tools including a color picker, screen ruler, batch resize and rename, and many more</p>
+			<p>🎨 <a href="https://www.tpgi.com/color-contrast-checker/">Colour Contrast Analyser</a><br>Check WCAG compliance for contrast between foreground and background colors on any desktop app</p>
+			<p>📑 <a href="https://pac.pdf-accessibility.org/en">PAC 2024 PDF Accessibility Checker</a><br>Dive deep into PDF accessibility and see an interactive preview of document structure for screen readers</p>
+			<p>🗜️ <a href="https://nikkhokkho.sourceforge.io/?page=FileOptimizern">FileOptimizer</a><br>Compress file size for a wide variety of multimedia and document formats</p>
+			<p>🏞️ <a href="https://www.faststone.org/FSResizerDetail.htm">FastStone Photo Resizer</a><br>Batch image conversion and resize with advanced options</p>
+		</div>
 
-				// Clear button functionality
+		<script>
+			// Store the initial content
 
-				document.getElementById('clearButton').addEventListener('click', function() {
-					document.querySelector('.highlightBox').value = '';
-					$('.highlightBox').trigger('input'); // Trigger highlighting
-				});
+			const initialContent = document.querySelector('.highlightBox').value;
 
-				// Reset button functionality
+			// Clear button functionality
 
-				document.getElementById('resetButton').addEventListener('click', function() {
-					document.querySelector('.highlightBox').value = initialContent;
-					$('.highlightBox').trigger('input'); // Trigger highlighting
-				});
+			document.getElementById('clearButton').addEventListener('click', function() {
+				document.querySelector('.highlightBox').value = '';
+				$('.highlightBox').trigger('input'); // Trigger highlighting
+			});
 
-				// Copy button functionality
+			// Reset button functionality
 
-				document.getElementById('copyButton').addEventListener('click', function() {
-					var textarea = document.querySelector('.highlightBox');
-					textarea.select();
-					navigator.clipboard.writeText(textarea.value)
-						.then(() => {
-							this.textContent = 'Copied!';
-							setTimeout(() => {
-								this.textContent = 'Copy to Clipboard';
-							}, 2000);
-						})
-						.catch(err => {
-							console.error('Failed to copy text: ', err);
-							this.textContent = 'Copy Failed';
-							setTimeout(() => {
-								this.textContent = 'Copy to Clipboard';
-							}, 2000);
-						});
-				});
+			document.getElementById('resetButton').addEventListener('click', function() {
+				document.querySelector('.highlightBox').value = initialContent;
+				$('.highlightBox').trigger('input'); // Trigger highlighting
+			});
 
-				// Highlighting rules
+			// Copy button functionality
 
-				$('.highlightBox').highlightWithinTextarea({
-					highlight: [
-						// Phone numbers
-						{
-							highlight: /(\()?\d{3}((\))|(\.)|\s)?\s*\d{3}(\.|-)?\s*\d{4}(?!-)/g,
-							className: 'red'
-						},
-						// Dates
-						{
-							highlight: /\b(?!(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}(,\s\d{4})?\b)((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|January|February|March|April|June|July|August|September|October|November|December)\.?\s\d{1,2}(?:st|nd|rd|th)?(?!,\s\d{4}))(?!\s*[ap]\.m\.)\b/gi,
-							className: 'red'
-						},
-						// Ampersand
-						{
-							highlight: /&/g,
-							className: 'red'
-						},
-						// Hash
-						{
-							highlight: /#/g,
-							className: 'red'
-						},
-						// No.
-						{
-							highlight: /\bno\.\s*\d+\b/gi,
-							className: 'red'
-						},
-						// Click here
-						{
-							highlight: /\b(?:1[0-2]|0?[1-9]):[0-5][0-9](?:\s*(?:AM|PM|A\.M\.|P\.M\.)|[ap]\.?m\.?(?!\.)|\s+[ap]m|\s+[AP]M)\b/g,
-							className: 'red'
-						},
-						// Click here
-						{
-							highlight: /\bclick here\b/gi,
-							className: 'red'
-						},
-						// Extra spaces
-						{
-							highlight: /[^\S\r\n]{2,}(?!$)/gm,
-							className: 'orange'
-						},
-						// Bullets
-						{
-							highlight: /^[•]\s*/gm,
-							className: 'orange'
-						},
-						// URLs
-						{
-							highlight: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
-							className: 'orange'
-						},
-						// Trailing spaces
-						{
-							highlight: /[ \t]+$/gm,
-							className: 'blue'
-						},
-						// Curly quotes
-						{
-							highlight: /[“”‘’]/g,
-							className: 'blue'
-						},
-						// Acronyms
-						{
-							highlight: /\b[A-Z]{2,}\b/g,
-							className: 'purple'
-						},
-						// Times
-						{
-							highlight: /\b(?!\d{1,2}(:\d{2})? [ap]\.m\.)\d{1,2}(:\d{2})?\s*[ap]\.?m?\.?\b/gi,
-							className: 'red'
-						},
-						
-						// Street abbreviations
-						{
-							highlight: /\b(Rd|Ave|St|Pk|Pkwy|Blvd|Wy|Ct|Dr|Cir|Ctr|Hwy|Ln|Pl|Rte|Sq|Ter|Ft|Sq)\.?\b/g,
-							className: 'orange'
-						}
-					]
-				});
+			document.getElementById('copyButton').addEventListener('click', function() {
+				var textarea = document.querySelector('.highlightBox');
+				textarea.select();
+				navigator.clipboard.writeText(textarea.value)
+					.then(() => {
+						this.textContent = 'Copied!';
+						setTimeout(() => {
+							this.textContent = 'Copy to Clipboard';
+						}, 2000);
+					})
+					.catch(err => {
+						console.error('Failed to copy text: ', err);
+						this.textContent = 'Copy Failed';
+						setTimeout(() => {
+							this.textContent = 'Copy to Clipboard';
+						}, 2000);
+					});
+			});
 
-				// Character count update function
+			// Highlighting rules
 
-				function updateCharCount() {
+			$('.highlightBox').highlightWithinTextarea({
+				highlight: [
+					// Phone numbers
+					{
+						highlight: /(\()?\d{3}((\))|(\.)|\s)?\s*\d{3}(\.|-)?\s*\d{4}(?!-)/g,
+						className: 'red'
+					},
+					// Dates
+					{
+						highlight: /\b(?!(January|February|March|April|May|June|July|August|September|October|November|December)\s\d{1,2}(,\s\d{4})?\b)((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec|January|February|March|April|June|July|August|September|October|November|December)\.?\s\d{1,2}(?:st|nd|rd|th)?(?!,\s\d{4}))(?!\s*[ap]\.m\.)\b/gi,
+						className: 'red'
+					},
+					// Ampersand
+					{
+						highlight: /&/g,
+						className: 'red'
+					},
+					// Hash
+					{
+						highlight: /#/g,
+						className: 'red'
+					},
+					// No.
+					{
+						highlight: /\bno\.\s*\d+\b/gi,
+						className: 'red'
+					},
+					// Click here
+					{
+						highlight: /\b(?:1[0-2]|0?[1-9]):[0-5][0-9](?:\s*(?:AM|PM|A\.M\.|P\.M\.)|[ap]\.?m\.?(?!\.)|\s+[ap]m|\s+[AP]M)\b/g,
+						className: 'red'
+					},
+					// Click here
+					{
+						highlight: /\bclick here\b/gi,
+						className: 'red'
+					},
+					// Extra spaces
+					{
+						highlight: /[^\S\r\n]{2,}(?!$)/gm,
+						className: 'orange'
+					},
+					// Bullets
+					{
+						highlight: /^[•]\s*/gm,
+						className: 'orange'
+					},
+					// URLs
+					{
+						highlight: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g,
+						className: 'orange'
+					},
+					// Trailing spaces
+					{
+						highlight: /[ \t]+$/gm,
+						className: 'blue'
+					},
+					// Curly quotes
+					{
+						highlight: /[“”‘’]/g,
+						className: 'blue'
+					},
+					// Acronyms
+					{
+						highlight: /\b[A-Z]{2,}\b/g,
+						className: 'purple'
+					},
+					// Times
+					{
+						highlight: /\b(?!\d{1,2}(:\d{2})? [ap]\.m\.)\d{1,2}(:\d{2})?\s*[ap]\.?m?\.?\b/gi,
+						className: 'red'
+					},
+
+					// Street abbreviations
+					{
+						highlight: /\b(Rd|Ave|St|Pk|Pkwy|Blvd|Wy|Ct|Dr|Cir|Ctr|Hwy|Ln|Pl|Rte|Sq|Ter|Ft|Sq)\.?\b/g,
+						className: 'orange'
+					}
+				]
+			});
+
+			// Character count update function
+
+			function updateCharCount() {
+				var input = document.getElementById('quickTextInput');
+				var charCount = input.value.length;
+				document.getElementById('charCountDisplay').textContent = 'Characters: ' + charCount;
+			}
+
+			// Add event listener for real-time updates
+
+			document.getElementById('quickTextInput').addEventListener('input', updateCharCount);
+
+			// Script for text manipulations on the input field
+
+			document.querySelectorAll('.button').forEach(button => {
+				button.addEventListener('click', function() {
 					var input = document.getElementById('quickTextInput');
-					var charCount = input.value.length;
-					document.getElementById('charCountDisplay').textContent = 'Characters: ' + charCount;
-				}
-
-				// Add event listener for real-time updates
-
-				document.getElementById('quickTextInput').addEventListener('input', updateCharCount);
-
-				// Script for text manipulations on the input field
-
-				document.querySelectorAll('.button').forEach(button => {
-					button.addEventListener('click', function() {
-						var input = document.getElementById('quickTextInput');
-						switch(this.id) {
-							case 'lowercaseButton':
-								input.value = input.value.toLowerCase();
-								break;
-							case 'titleCaseButton':
-								input.value = toTitleCase(input.value);
-								break;
-							case 'removeSpacesButton':
-								input.value = input.value.replace(/\s+/g, ' ').trim();
-								break;
-							case 'removeBulletsButton':
-								input.value = input.value.replace(/^[•\-\*\s]+/, '').trim();
-								break;
-						}
-						updateCharCount(); // Update character count after manipulation
-					});
+					switch (this.id) {
+						case 'lowercaseButton':
+							input.value = input.value.toLowerCase();
+							break;
+						case 'titleCaseButton':
+							input.value = toTitleCase(input.value);
+							break;
+						case 'removeSpacesButton':
+							input.value = input.value.replace(/\s+/g, ' ').trim();
+							break;
+						case 'removeBulletsButton':
+							input.value = input.value.replace(/^[•\-\*\s]+/, '').trim();
+							break;
+					}
+					updateCharCount(); // Update character count after manipulation
 				});
+			});
 
-				// Title Case function
+			// Title Case function
 
-				function toTitleCase(str) {
-					var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|vs?\.?|via)$/i;
+			function toTitleCase(str) {
+				var smallWords = /^(a|an|and|as|at|but|by|en|for|if|in|of|on|or|the|to|vs?\.?|via)$/i;
 
-					return str.replace(/[A-Za-z0-9\u00C0-\u00FF]+[^\s-]*/g, function(match, index, title) {
-						if (index > 0 && index + match.length !== title.length &&
-							match.search(smallWords) > -1 && title.charAt(index - 2) !== ":" &&
-							(title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&
-							title.charAt(index - 1).search(/[^\s-]/) < 0) {
-							return match.toLowerCase();
-						}
+				return str.replace(/[A-Za-z0-9\u00C0-\u00FF]+[^\s-]*/g, function(match, index, title) {
+					if (index > 0 && index + match.length !== title.length &&
+						match.search(smallWords) > -1 && title.charAt(index - 2) !== ":" &&
+						(title.charAt(index + match.length) !== '-' || title.charAt(index - 1) === '-') &&
+						title.charAt(index - 1).search(/[^\s-]/) < 0) {
+						return match.toLowerCase();
+					}
 
-						if (match.substr(1).search(/[A-Z]|\../) > -1) {
-							return match;
-						}
+					if (match.substr(1).search(/[A-Z]|\../) > -1) {
+						return match;
+					}
 
-						return match.charAt(0).toUpperCase() + match.substr(1);
-					});
-				}
-			</script>
-		</section>
+					return match.charAt(0).toUpperCase() + match.substr(1);
+				});
+			}
+		</script>
+	</section>
+	<script async data-id="101467973" src="//static.getclicky.com/js"></script>
+</body>
 
-	</body>
 </html>
